@@ -29,9 +29,9 @@ placebo(y ~ x1 + x2, dat,
         )
 ```
 
-For each number of clusters $c$, `placebo` gives the proportion of simulations with p-values below 0.05. The optimal cluster number is where this proportion is in the range 0.05 to 0.07. The command also gives the placebo significance level of the treatment variable: how often a placebo p-value is below that of the real one.
+For each number of clusters $c$, `placebo` gives the proportion of simulations with p-values below 0.05. The optimal cluster number is where this proportion is in the range 0.05 to 0.07. The command also gives the placebo significance level of the treatment variable: how often the t-statistics of spatial noise placebos are above the real one.
 
-Knowing spatial basis values $k$ and $p$ and cluster number $c$ we can now run the spatial basis regression `basis_reg` that gives us standard regression coefficients, confidence intervals and so on.
+Knowing the spatial basis values $k$ and $p$ and the cluster number $c$ we can now run the spatial basis regression `basis_reg` that gives us standard regression coefficients, confidence intervals and so on.
 
 ``` r
 basis_reg(y ~ x1 + x2, dat,
@@ -41,7 +41,7 @@ basis_reg(y ~ x1 + x2, dat,
           )
 ```
 
-Besides `placebo`, `spatInfer` gives a second diagnostic, a synthetic outcome test, that tests the hypothesis that the outcome $y$ is spatial noise, and thus independent of the treatment $x1$.
+Besides `placebo`, `spatInfer` gives a second diagnostic `synth`, a synthetic outcome test that tests the hypothesis that the outcome $y$ is spatial noise, and thus independent of the treatment $x1$.
 
 ``` r
 synth(y ~ x1 + x2, dat,
