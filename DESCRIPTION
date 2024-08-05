@@ -1,0 +1,36 @@
+Package: spatInfer
+Type: Package
+Title: Verifiably reliable spatial regressions
+Version: 0.1.0
+Author: Who wrote it
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: Strong autocorrelation and directional trends mean that regressions using spatial observations
+    are prone to return seriously inflated t-statistics even after applying small cluster or Conley standard errors.
+Encoding: UTF-8
+LazyData: true
+Imports:
+  spdep,
+  cluster,
+  mgcv,
+  fixest,
+  fields,
+  foreach,
+  parallel,
+  dplyr,
+  stringr,
+  tidyr,
+  ggplot2,
+  patchwork,
+  tinytable,
+  broom,
+  purrr,
+  doParallel
+Suggests:
+  modelsummary,
+  BRISC,
+  knitr,
+  rmarkdown
+VignetteBuilder: knitr
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+License: MIT + file LICENSE

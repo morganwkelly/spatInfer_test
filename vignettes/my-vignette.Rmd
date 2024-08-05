@@ -1,0 +1,55 @@
+---
+title: "my-vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{my-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+options(tinytable_print_output = "markdown")
+```
+
+```{r setup}
+library(spatInfer)
+```
+
+Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The html_vignette output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible.
+
+```{r}
+library(spatInfer)
+
+data(opportunity)
+set.seed(123)
+opportunity=opportunity |> dplyr::slice_sample(n=100)
+```
+
+
+## 1. Choose the Spatial Basis
+
+Now run the regression and print output
+
+```{r fig-basis, fig.height=4, fig.width=5, Cache=FALSE}
+optimal_basis(mobility~racial_seg+single_mom, opportunity,
+              max_splines=5)
+```
+
+## 2. Run Placebo Test
+next run placebo test.
+
+```{r placebo, Cache=FALSE}
+plbo=placebo(mobility~racial_seg+single_mom, opportunity,
+                 splines=4, pc_num=3,
+                 nSim=50,
+                 Parallel=T
+                 )
+placebo_table(plbo)
+
+```
+
